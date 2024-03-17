@@ -8,9 +8,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import java.util.ArrayList;
+import java.util.List;
 
-@Document(collation = "movies")
+@Document(collection = "movies")
 @Data // getters, setters, toString
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,9 +22,19 @@ public class Movie {
     private String releaseDate;
     private String trailerLink;
     private String poster;
-    private ArrayList<String> genres;
-    private ArrayList<String> backdrops;
+    private List<String> genres;
+    private List<String> backdrops;
     @DocumentReference // pentru legatura dintre movies si reviews
-    private ArrayList<Review> reviewIds;
+    private List<Review> reviewIds;
 
+    public Movie(String imdbId, String title, String releaseDate, String trailerLink, String poster, List<String> genres, List<String> backdrops, List<Review> reviewIds) {
+        this.imdbId = imdbId;
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.trailerLink = trailerLink;
+        this.poster = poster;
+        this.genres = genres;
+        this.backdrops = backdrops;
+        this.reviewIds = reviewIds;
+    }
 }
